@@ -1,9 +1,12 @@
 const express = require('express');
 const homeRouter = require('./routes/auth-router');
+const connectDB = require('./db/connect');
+require('dotenv').config();
+
+const PORT = process.env.PORT || 3000;
+const URI = process.env.MONGO_URI;
 
 const app = express();
-
-require('dotenv').config();
 
 app.use(express.json());
 
@@ -13,6 +16,15 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/auth', homeRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log('Server started!');
-});
+const startServer = async () => {
+  try {
+    await connectDB(URI);
+    app.listen(PORT, () => {
+      console.log('Server started!');
+    });
+  } catch (error) {
+    console.log('Error', error);
+  }
+};
+
+startServer();
