@@ -1,4 +1,3 @@
-const express = require('express');
 const User = require('../models/user-model');
 
 const postRegister = async (req, res) => {
@@ -10,7 +9,7 @@ const postRegister = async (req, res) => {
     // if (!isEmailExist) {
     //   const user = await User.create(req.body);
     // }
-    
+
     const user = await User.create(req.body);
 
     return res
