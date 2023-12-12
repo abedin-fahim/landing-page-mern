@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 3000;
 const URI = process.env.MONGO_URI;
 
 const app = express();
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -19,7 +18,7 @@ app.use('/api/v1/auth', homeRouter);
 const startServer = async () => {
   try {
     await connectDB(URI);
-    app.listen(PORT, () => {
+    await app.listen(PORT, () => {
       console.log('Server started!');
     });
   } catch (error) {
