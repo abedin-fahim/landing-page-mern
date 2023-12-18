@@ -38,9 +38,26 @@ const UserSchema = new Schema({
 
 // UserSchema.pre('save', async function (next) {
 UserSchema.pre('save', async function (next) {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
+
+// Methods that can be called where the model is begin used;
+// Creating token using instance methods
+UserSchema.methods.getToken = function () {
+  const token = jwt.sign(
+    { userId: this._id, email: this.email },
+    process.env.SECRET,
+    {
+      expiresIn: process.env.EXPIRES_IN,
+    }
+  );
+  return token;
+};
 
 module.exports = model('User', UserSchema);
