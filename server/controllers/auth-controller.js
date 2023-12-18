@@ -22,7 +22,7 @@ const postRegister = async (req, res) => {
     // ? Using the pre method available to the mongoose schema, added in the User model script
 
     const user = await User.create(req.body);
-    console.log(user);
+    // console.log(user);
 
     return res.status(200).json({ user });
   } catch (error) {
