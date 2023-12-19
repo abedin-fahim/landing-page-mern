@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const UserSchema = new Schema({
   email: {
@@ -49,9 +50,9 @@ UserSchema.pre('save', async function (next) {
 
 // Methods that can be called where the model is begin used;
 // Creating token using instance methods
-UserSchema.methods.getToken = function () {
+UserSchema.methods.getToken = async function () {
   const token = jwt.sign(
-    { userId: this._id, email: this.email },
+    { userId: this._id.toString(), email: this.email, isAdmin: this.isAdmin },
     process.env.SECRET,
     {
       expiresIn: process.env.EXPIRES_IN,
