@@ -61,4 +61,9 @@ UserSchema.methods.getToken = async function () {
   return token;
 };
 
+UserSchema.methods.comparePasswords = async function (enteredPass) {
+  const isMatch = await bcrypt.compare(enteredPass, this.password);
+  return isMatch;
+};
+
 module.exports = model('User', UserSchema);

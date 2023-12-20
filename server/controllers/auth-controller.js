@@ -1,4 +1,5 @@
 const User = require('../models/user-model');
+const { StatusCodes } = require('http-status-codes');
 
 const postRegister = async (req, res) => {
   // console.log(req.body);
@@ -55,6 +56,44 @@ const postRegister = async (req, res) => {
     });
 };
 
+const postLogin = async (req, res) => {
+  //! The steps
+  // 1. Get the username / email or password
+  // 2. Check if both of them exists
+  // 2.2 If doesn't exists, return error
+  // 3. Check if username/email exists or not
+  // 3.2 Return error if user not found
+  // 4. Compare password, using the Schema instances methods
+  // 5. Return token
+
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: 'Please provide email and password' });
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(StatusCodes.NOT_FOUND).json({ msg: 'User not found' });
+  }
+
+  const isPassValid = await user.comparePasswords(password);
+
+  if (!isPassValid) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json({ msg: 'Invalid password' });
+  }
+
+  return res
+    .status(StatusCodes.ACCEPTED)
+    .json({ user: { email: user.email }, token: user.getToken() });
+};
+
 module.exports = {
   postRegister,
+  postLogin,
 };

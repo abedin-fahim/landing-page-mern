@@ -1,5 +1,5 @@
 const express = require('express');
-const { postRegister } = require('../controllers/auth-controller');
+const { postRegister, postLogin } = require('../controllers/auth-controller');
 
 const router = express.Router();
 
@@ -7,5 +7,6 @@ const router = express.Router();
 //   res.status(200).json({ msg: 'Welcome to the authentication page' });
 // });
 router.post('/register', postRegister);
+router.post('/login', postLogin);
 
 module.exports = router;
