@@ -88,9 +88,11 @@ const postLogin = async (req, res) => {
       .json({ msg: 'Invalid password' });
   }
 
-  return res
-    .status(StatusCodes.ACCEPTED)
-    .json({ user: { email: user.email }, token: user.getToken() });
+  return res.status(StatusCodes.ACCEPTED).json({
+    msg: 'Login successful',
+    user: { email: user.email, id: user._id },
+    token: await user.getToken(),
+  });
 };
 
 module.exports = {
