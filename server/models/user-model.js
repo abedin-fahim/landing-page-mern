@@ -22,7 +22,7 @@ const UserSchema = new Schema({
     maxlength: [20, 'Your username cannot be more than 20 characters'],
   },
   contact: {
-    type: Number,
+    type: String,
     required: [true, 'You must provide a valid number'],
     trim: true,
   },
