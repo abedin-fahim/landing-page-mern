@@ -1,6 +1,7 @@
 const express = require('express');
 const homeRouter = require('./routes/auth-router');
 const connectDB = require('./db/connect');
+const errorMiddleware = require('./middlewares/error-middleware');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/auth', homeRouter);
+app.use(errorMiddleware);
 
 const startServer = async () => {
   try {
