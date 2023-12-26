@@ -1,7 +1,7 @@
 const User = require('../models/user-model');
 const { StatusCodes } = require('http-status-codes');
 
-const postRegister = async (req, res) => {
+const register = async (req, res) => {
   // console.log(req.body);
   // const { email, password } = req.body;
 
@@ -56,7 +56,7 @@ const postRegister = async (req, res) => {
     });
 };
 
-const postLogin = async (req, res) => {
+const login = async (req, res) => {
   //! The steps
   // 1. Get the username / email or password
   // 2. Check if both of them exists
@@ -96,6 +96,6 @@ const postLogin = async (req, res) => {
 };
 
 module.exports = {
-  postRegister,
-  postLogin,
+  register,
+  login,
 };
