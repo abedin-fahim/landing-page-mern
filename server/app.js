@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/contact', contactRouter);
+app.use('/api/v1/form', contactRouter);
 app.use(errorMiddleware);
 
 const startServer = async () => {
