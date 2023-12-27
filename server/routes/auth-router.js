@@ -9,6 +9,6 @@ const router = express.Router();
 //   res.status(200).json({ msg: 'Welcome to the authentication page' });
 // });
 router.post('/register', validate(signupSchema), register);
-router.get('/login', validate(loginSchema), login);
+router.get('/login', login);
 
 module.exports = router;

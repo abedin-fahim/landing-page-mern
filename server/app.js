@@ -1,5 +1,6 @@
 const express = require('express');
-const homeRouter = require('./routes/auth-router');
+const authRouter = require('./routes/auth-router');
+const contactRouter = require('./routes/contact-router');
 const connectDB = require('./db/connect');
 const errorMiddleware = require('./middlewares/error-middleware');
 require('dotenv').config();
@@ -14,7 +15,8 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: 'Hello, world!' });
 });
 
-app.use('/api/v1/auth', homeRouter);
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/contact', contactRouter);
 app.use(errorMiddleware);
 
 const startServer = async () => {
