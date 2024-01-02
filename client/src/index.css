@@ -41,3 +41,10 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4.2rem 2.4rem;
+  margin: 0 auto;
+}

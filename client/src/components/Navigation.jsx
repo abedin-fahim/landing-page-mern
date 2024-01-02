@@ -4,7 +4,7 @@ import classes from './Navigation.module.css';
 const Navigation = () => {
   return (
     <>
-      <header className={classes.container}>
+      <header className='container'>
         <div>
           <div className='logo-brand'>
             <a href='/'>ReCore Thumb</a>
