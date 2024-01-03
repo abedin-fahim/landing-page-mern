@@ -3,10 +3,10 @@ const Message = require('../models/message-model');
 
 const contact = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { email, message } = req.body;
+
     await Message.create(req.body);
     return res.status(StatusCodes.ACCEPTED).json({
-      name,
       msg: 'Message sent successfully',
     });
   } catch (error) {

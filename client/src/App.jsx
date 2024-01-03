@@ -7,6 +7,8 @@ import LoginPage from './pages/Login';
 import SignupPage from './pages/Signup';
 import ErrorPage from './pages/Error';
 import RootLayout from './pages/Root';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from './utils/http';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +45,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;

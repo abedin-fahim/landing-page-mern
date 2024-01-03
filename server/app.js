@@ -3,12 +3,14 @@ const authRouter = require('./routes/auth-router');
 const contactRouter = require('./routes/contact-router');
 const connectDB = require('./db/connect');
 const errorMiddleware = require('./middlewares/error-middleware');
+const cors = require('cors');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 const URI = process.env.MONGO_URI;
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
