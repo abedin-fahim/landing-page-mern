@@ -14,12 +14,15 @@ const SignupPage = () => {
   const userHandler = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    
 
     setUser({
       ...user,
       [name]: value,
     });
+
+    // setUser((prev) => ({
+    //   prev, ([name] = value);
+    // }));
   };
   const userSubmitHandler = (e) => {
     e.preventDefault();
