@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import { useMutation } from 'react-query';
 import RegisterImage from '/images/register.png';
 
 const SignupPage = () => {
+  const { mutate, isError, isSuccess  } = useMutation();
+
   // Different way to handle the input
   // useRef, useContext, or redux-toolkit are different ways to handling form submission
+  // Or even use the Form tag from the react-router library
+  // Which would be the easiest option
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -28,6 +33,7 @@ const SignupPage = () => {
     e.preventDefault();
 
     // Registration handling
+    // console.log(user);
   };
 
   return (

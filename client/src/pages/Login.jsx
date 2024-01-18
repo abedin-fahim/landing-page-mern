@@ -12,6 +12,7 @@ const LoginPage = () => {
     let password = passwordRef.current.value;
 
     // Handle Login
+    // console.log(email, password);
   };
 
   return (
